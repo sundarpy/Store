@@ -63,7 +63,7 @@ class SubCategory(models.Model):
 		return self.subcategory_name
 
 	def get_apps(self):
-		return Application.objects.filter(app_subcategory=self).order_by('-app_rating')
+		return Application.objects.filter(app_subcategory=self).order_by('-app_ratingcount')
 
 class Application(models.Model):
 	"""Applications and Games"""

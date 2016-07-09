@@ -44,7 +44,7 @@ def HomePage(request):
 	category = Category.objects.first()
 	subcats = SubCategory.objects.filter(category=category)
 	sub_category = SubCategory.objects.all()
-	applications = Application.objects.filter(app_subcategory=sub_category).order_by('-app_ratingcount')
+	applications = Application.objects.filter(app_subcategory=sub_category)
 	featured = Featured.objects.filter(featured_type='1')
 
 	template = "home.html"

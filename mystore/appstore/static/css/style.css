@@ -222,7 +222,7 @@ CONTENT (OVER ALL)
 	margin: 40px;
 }
 .Recommented-part .thump-grid {
-    display: block;
+    display: inline-block;
     width: 100%;
     max-width: 100%;
 }
@@ -1404,12 +1404,13 @@ footer .copyright .fancy span:after, footer .copyright .fancy span:before {
         display: inline-block !important;
         margin: 0px 32px auto;
     }
-    .app-icons .active-icon .app-icon {
-         width: 100px;
-        max-width: 100%;
-        display: inline-block;
-        float: left;
-    }
+    
+.app-icons .active-icon .app-icon {
+    width: 94px;
+    max-width: 100%;
+    display: inline-block;
+    float: left;
+}
 	.navbar-form .form-control {
 		width: 234px !important;
 		max-width: 100%;
@@ -1445,14 +1446,14 @@ footer .copyright .fancy span:after, footer .copyright .fancy span:before {
         margin-left: 0px !important;
     }
     .Recommented-part .thump-grid {
-        
+        padding-left: 42px;
     }
 	.Recommented-part .recomment-title h2 {
 		font-size: 18px;
 		line-height: 24px;
 		font-weight: 300;
 		font-family: 'Roboto', sans-serif;
-		padding-left: 18px;
+        padding-left: 47px;
 	}
 	.Recommented-part .recomment-title .more a {
 		font-size: 11px;
@@ -1463,17 +1464,20 @@ footer .copyright .fancy span:after, footer .copyright .fancy span:before {
 		width: 40px;
 		height: 22px;
 		padding: 4px 1px;
-		margin-right: 18px;
-		margin-top: -10px;
+		margin-right: 42px;
+		margin-top: 0px;
 		background: #4C4C4C;
 		border-color: #4C4C4C;
 		border-radius: 1px;
 	}
+    .Recommented-part .recomment-title .more {
+        margin-right: 16px;
+    }
 	.Recommented-part .thumbnail {
         display: inline-block;
-        width: 152px;
+        width: 126px;
         max-width: 100%;
-        margin: 8px 20px;
+         margin: 8px 10px;
     }
 
 	.reviews-comment aside .date {
