@@ -1,0 +1,297 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<title>BitStore</title>
+			<!-- meta name -->
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta name="keywords" content="">
+			<meta name="author" content="">
+			<!-- Favicon -->
+			<link rel="shortcut icon" type="images/icon" href="{% static "images/favicon.ico" %}"/>
+			<!-- Bootstrap -->
+			<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet"> 
+			<!--<link href="css/bootstrap.css" rel="stylesheet">-->
+			<!-- Font Awesome -->
+			<link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+			<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+			<!-- Main Style -->
+			<link href="{% static "css/owl.carousel.css" %}" rel="stylesheet">
+			<link href="{% static "css/owl.theme.css" %}" rel="stylesheet">	
+			<link href="{% static "css/style.css" %}" rel="stylesheet">
+		</head>
+		
+		<body>
+			<div class="wrapper" id="wrapper">
+				<!-- HEADER START-->
+				<header id="#">
+					<nav class="navbar navbar-default">
+						<div class="container-fluid">
+							<!-- Brand and toggle get grouped for better mobile display -->
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+								<a class="navbar-brand" href="{% url 'home' %}">BITStore</a>
+							</div>
+
+							<!-- Collect the nav links, forms, and other content for toggling -->
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+								<ul class="nav navbar-nav">
+										<!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+									<li><a href="#">Link</a></li>-->
+								</ul>
+								<form class="navbar-form navbar-center" action="{% url 'results'  %}" method="get" role="search">
+									<div class="form-group">
+										<input type="search" class="form-control" value="Search" name="q" placeholder="Search..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" required="">
+									</div>
+									<span class="pull-right"><a href=""><img src="{% static "images/user.png" %}" style=""></a></span>
+								</form>
+								<ul class="nav navbar-nav navbar-right">
+									<!--<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>-->
+								</ul>
+							</div><!-- /.navbar-collapse -->
+						</div><!-- /.container-fluid -->
+					</nav>
+				</header>
+				<section class="classified">
+					<nav class="navbar navbar-default navbar-center">
+						<div class="container">
+							<ul class="nav navbar-nav nabbar-right">
+								<li><a href="{% url 'apppopular' %}">Apps</a></li>
+								<li><a href="{% url 'gamepopular' %}">Games</a></li>
+							</ul>
+						</div>
+					</nav>
+				</section>
+				<!-- HEADER END-->
+				<div class="clearfix"></div>
+				
+				
+				<!-- CONTENT START-->
+					<!-- Description part Start -->
+					<section class="description-part">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="image-screen">
+										<div class="row">
+											<div id="myCarousel" class="carousel slide" data-ride="carousel">
+												<!-- Wrapper for slides -->
+												<div class="carousel-inner" role="listbox">
+												{% for image in app_image|slice:":1" %}	
+												  <div class="item active">
+													<img src={{image.image_url}} alt="Screen1">
+												  </div>
+												  {% endfor %}
+												  {% for image in app_image|slice:"1:" %}	
+												  <div class="item">
+													<img src={{image.image_url}} alt="Screen2">
+												  </div>
+												{% endfor %}
+												</div>
+
+												<!-- Left and right controls -->
+												<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+												  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+												  <span class="sr-only">Previous</span>
+												</a>
+												<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+												  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+												  <span class="sr-only">Next</span>
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="main-content-page">
+										<div class="row">
+											<div class="col-md-3">
+												<div class="main-page">
+													<img src={{app_detail.app_icon_url}} alt="content-img">
+												</div>
+												<div class="social-apps">
+													<p class="downld"><a href="{{app_detail.app_url}}" class="btn btn-sm">Download</a></p>
+												</div>
+											</div>
+											<div class="col-md-5">
+												<div class="main-page-title">
+													<h4>{{app_detail.app_name}}</h4>
+													<div class="social-app">
+														<span><a href="{% url 'subcatdetail' app_detail.app_subcategory.id %}">{{app_detail.app_subcategory}}</a></span>
+														</a>
+													</div>
+													<div class="rating-card">
+														{{app_detail.app_rating}}
+													</div>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="text-content">
+													<div class="about-version">
+														<div class="version-date update">
+															<h4>Version: &nbsp; <span>{{app_detail.app_version}}</span></h4>
+															<h4>Publisher: &nbsp; <span><a href="{% url 'pubdetail' app_detail.app_publisher.id %}">{{app_detail.app_publisher}}</a></span></h4>
+															<h4>Ratings: &nbsp; <span>{{app_detail.app_ratingcount}}</span></h4>
+															<h4>Updated on: &nbsp; <span>{{app_detail.app_pubdate}}</span></h4>
+															<h4>Size: &nbsp; <span>{{app_detail.app_size}}&nbsp;MB</span></h4>
+														</div>
+													</div>	
+												</div>
+											</div>
+										</div>
+										<div class="text-content">
+											
+											<div class="description-show">
+												<h4>Description:</h4>
+												<p>
+													{{app_detail.app_description}}
+												</p>
+											</div>
+											<div class="collapse" id="collapseExample">
+												<div class="card card-block">
+												</div>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<div class="Recommented-part">
+									<div class="container">
+										<div class="recomment-title">
+											<h2>
+												Similar Apps
+												<span class="more pull-right">
+													<a href="{% url 'subcatdetail' app_detail.app_subcategory.id %}" class="btn btn-sm">More</a>
+												</span>
+											</h2>
+										</div>
+										<div class="thump-grid">
+											<div class="row">
+												{% for app in similar_apps|slice:":8" %}
+													<div class="thumbnail">
+														<a href="{% url 'appdetail' app.id %}"><img src="{{app.app_icon_url}}" alt=""></a>
+														<div class="caption">
+															<a href="{% url 'appdetail' app.id %}"><h4>{{app.app_name}}</h4></a>
+															<h5>{{app.app_publisher}}</h5>
+															<p class="downld"><a href="{{app.app_url}}" class="btn btn-sm">Download APK</a></p>
+														</div>
+													</div>
+												{% endfor %}
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="Recommented-part">
+									<div class="container">
+										<div class="recomment-title">
+											<h2>
+												More from Developer
+												<span class="more pull-right">
+													<a href="{% url 'pubdetail' app_detail.app_publisher.id %}" class="btn btn-sm">More</a>
+												</span>
+											</h2>
+										</div>
+										<div class="thump-grid">
+											<div class="row">
+												{% for app in publisher_apps|slice:":6" %}
+													<div class="thumbnail">
+														<a href="{% url 'appdetail' app.id %}"><img src="{{app.app_icon_url}}" alt=""></a>
+														<div class="caption">
+															<a href="{% url 'appdetail' app.id %}"><h4>{{app.app_name}}</h4></a>
+															<h5>{{app.app_publisher}}</h5>
+															<p class="downld"><a href="{{app.app_url}}" class="btn btn-sm">Download APK</a></p>
+														</div>
+													</div>
+												{% endfor %}
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Similar part start -->
+
+								<!-- Similar part end -->
+							</div>
+						</div>
+					</section>
+					<!-- Description part Start -->
+				<!-- CONTENT END-->
+				
+				<!--FOOTER START -->    
+				<footer>
+					<div class="container">
+						<div class="row">
+							<div class="social">
+								<ul class="list-unstyled">
+									<li>
+										<a class="ico" href="https://www.facebook.com/bitnomix/"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+									</li>
+									<li>
+										<a class="ico" href="https://twitter.com/bitnomix?lang=en"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+									</li>
+								</ul>
+							</div>
+
+							<ul class="list-unstyled">
+								<li>
+									<a href="{% url 'apppopular' %}">App</a>
+								</li>
+								<li>
+									<span> &#8226; </span><a href="{% url 'gamepopular' %}">Games</a>
+								</li>
+								<!-- <li>
+									<span> &#8226; </span><a href="/careers">Wishlist</a>
+								</li>
+								
+									<li>
+										<span> &#8226; </span><a href="/support">Account</a>
+									</li>
+								
+								<li>
+									<span> &#8226; </span><a href="/faqs">Submit Your App</a>
+								</li>
+								<li>
+									<span> &#8226; </span><a href="/terms-and-conditions">About Us</a>
+								</li>
+								<li>
+									<span> &#8226; </span><a href="/refund-policy">Contact Us</a>
+								</li> -->
+							</ul>
+
+							<div class="copyright">
+								<div class="subtitle fancy"><span>CopyRight &copy; 2016 BITStore. All rights reserved</span></div>
+							</div>
+						</div>
+					</div>
+                </footer>
+				<!-- FOOTER END -->
+			</div>
+			<!-- initialize jQuery Library --> 
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+			<!-- jquery -->
+			<script src="{% static "js/jquery.min.js" %}"></script>
+			<!-- Bootstrap -->
+			<script src="{% static "js/bootstrap.min.js" %}"></script>
+			<script src="{% static "js/owl.carousel.min.js" %}"></script>
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$('.open-modal').click(function(){
+						$('#myModal').modal('show');
+					});
+					$("#myModal").on('hidden.bs.modal', function(){
+						alert("Modal window has been completely closed.");
+					});
+				});
+			</script>
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$("#myCarousel").carousel({
+						interval : false
+					});
+				});
+			</script>
+		
+		</body>
+	</html>
