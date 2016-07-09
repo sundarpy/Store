@@ -48,7 +48,7 @@
 									<div class="form-group">
 										<input type="search" class="form-control" value="Search" name="q" placeholder="Search..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" required="">
 									</div>
-									<span class="pull-right"><a href=""><img src="{% static "images/user.png" %}" style=""></a></span>
+									<!-- <span class="pull-right"><a href=""><img src="{% static "images/user.png" %}" style=""></a></span> -->
 								</form>
 								<ul class="nav navbar-nav navbar-right">
 									<!--<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>-->
@@ -88,7 +88,6 @@
 											<div class="caption">
 												<a href="{% url 'appdetail' app.application.id %}"><h4>{{app.application.app_name}}</h4></a>
 												<h5>{{app.application.app_publisher}}</h5>
-												<p class="rating-app pull-right">{{app.application.app_rating}}</p>
 												<p class="downld"><a href="{{app.application.app_url}}" class="btn btn-sm">Download APK</a></p>
 											</div>
 										</div>
