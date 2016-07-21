@@ -23,14 +23,14 @@ def read_file(request):
 	
 	for url in urls:
 		f = open(url, 'r')						
-		json_string = f.read()																
-		f.close()																	
-		data = json.loads(json_string)												
+		json_string = f.read()																																	
+		data = json.loads(json_string)
+		f.close()												
 		for item in data:															
 			for key in item:
 				if key=='name':
 					nam1 = str(item[key])
-					nam2 = nam1.strip("]").replace("u'","").strip("'").strip('"').replace('u"','').replace('\u','').replace(" APK","")
+					nam2 = nam1.replace("u'","").replace("']","").replace(" APK","")
 					app_name = nam2[1:]
 				elif key=='icon_url':
 					ico1 = str(item[key])
@@ -41,10 +41,9 @@ def read_file(request):
 					xlist = []
 					for i in temp1:
 						temp2 = i.replace("\r","").replace("\n","")
-						temp3 = unicodedata.normalize('NFKD', temp2).encode('ascii', 'ignore')
-						xlist.append(temp3)
+						xlist.append(temp2)
 					desc1 = str(xlist)
-					desc2 = desc1.replace("u'","").replace("\u","").strip("]").strip("[").strip("'").replace('u"','').strip('"').replace("\xa0","")
+					desc2 = desc1.replace("u'","").replace("\u","").strip("]").replace('", ',"").replace("', ","").replace("', '","").replace('", "',"").replace("'","").replace('u"','').replace('"','').strip("[").replace("\xa0","")
 					desc3 = desc2.lstrip().rstrip()
 					app_description = desc3
 				elif key=='publisher':
@@ -65,6 +64,11 @@ def read_file(request):
 					subcat3 = subcat2[6:]
 					subcat4 = subcat3.lstrip()
 					app_subcategory = subcat4[:-24]
+				elif key=='minimum':
+					mini1 = str(item[key])
+					mini2 = mini1.replace("u'","").replace("']","")
+					mini3 = mini2[1:]
+					minimumandroid = mini3
 				elif key=='pubdate':
 					date1 = str(item[key])
 					date2 = date1.replace("u'","").replace("']","")
@@ -128,6 +132,7 @@ def read_file(request):
 					app_subcategory=app_subcat,
 					app_publisher=app_publish,
 					app_ratingcount=rating_count,
+					app_minimum=minimumandroid,
 					app_rating=app_rating,
 					app_pubdate=app_pubdate,
 					app_version=app_version,

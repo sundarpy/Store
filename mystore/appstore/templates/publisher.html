@@ -35,7 +35,7 @@
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
 								</button>
-								<a class="navbar-brand" href="{% url 'home' %}">BITAppz</a>
+								<a class="navbar-brand" href="{% url 'home' %}"><img src="{% static "images/bitappz.png" %}"></a>
 							</div>
 
 							<!-- Collect the nav links, forms, and other content for toggling -->
@@ -57,15 +57,29 @@
 						</div><!-- /.container-fluid -->
 					</nav>
 				</header>
-				<section class="classified">
-					<nav class="navbar navbar-default navbar-center">
+				<section class="app-games" style="margin-top: -20px;background: #fff;">
 						<div class="container">
-							<ul class="nav navbar-nav nabbar-right">
-								<li><a href="{% url 'apppopular' %}">Apps</a></li>
-								<li><a href="{% url 'gamepopular' %}">Games</a></li>
-							</ul>
+							<div class="row">
+								<div class="col-md-6" style="border-right: 2px solid #ddd;">
+									<div class="app-game-left">
+										<a href="{% url 'apppopular' %}" style="text-decoration: none;">
+											<h4>
+												Apps
+											</h4>
+										</a>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="app-game-left">
+										<a href="{% url 'gamepopular' %}" style="text-decoration: none;">
+											<h4>
+												Games
+											</h4>
+										</a>
+									</div>
+								</div>
+							</div>
 						</div>
-					</nav>
 				</section>
 				<!-- HEADER END-->
 				
@@ -100,7 +114,7 @@
 											</div>
 										</div>
 										<aside>
-											<p class="about-produt">{{apps.app_description}}</p>
+											<p class="about-produt">{{apps.app_description|safe}}</p>
 										</aside>
 									</div>
 								</div>
@@ -119,45 +133,61 @@
 				<footer>
 					<div class="container">
 						<div class="row">
-							<div class="social">
-								<ul class="list-unstyled">
-									<li>
-										<a class="ico" href="https://www.facebook.com/bitnomix/"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
-									</li>
-									<li>
-										<a class="ico" href="https://twitter.com/bitnomix?lang=en"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
-									</li>
-								</ul>
+							<div class="col-md-4">
+								<div class="movie-footer">
+									<h4>Apps</h4>
+									<div class="row">
+										<div class="col-md-6">
+											<ol class="list-unstyled">
+												{% for sub in subcats|slice:":12" %}
+												<li><a href="{% url 'subcatdetail' sub.id %}">{{sub.subcategory_name}}</a></li>
+												{% endfor %}
+											</ol>
+										</div>
+										<div class="col-md-6">
+											<ol class="list-unstyled">
+												{% for sub in subcats|slice:"12:23" %}
+												<li><a href="{% url 'subcatdetail' sub.id %}">{{sub.subcategory_name}}</a></li>
+												{% endfor %}
+											</ol>
+										</div>
+									</div>
+								</div>
 							</div>
-
-							<ul class="list-unstyled">
-								<li>
-									<a href="{% url 'apppopular' %}">App</a>
-								</li>
-								<li>
-									<span> &#8226; </span><a href="{% url 'gamepopular' %}">Games</a>
-								</li>
-								<!-- <li>
-									<span> &#8226; </span><a href="/careers">Wishlist</a>
-								</li>
-								
-									<li>
-										<span> &#8226; </span><a href="/support">Account</a>
-									</li>
-								
-								<li>
-									<span> &#8226; </span><a href="/faqs">Submit Your App</a>
-								</li>
-								<li>
-									<span> &#8226; </span><a href="/terms-and-conditions">About Us</a>
-								</li>
-								<li>
-									<span> &#8226; </span><a href="/refund-policy">Contact Us</a>
-								</li> -->
-							</ul>
-
-							<div class="copyright">
-								<div class="subtitle fancy"><span>CopyRight &copy; 2016 BitAppz. All rights reserved</span></div>
+							
+							<div class="col-md-4">
+								<div class="movie-footer">
+									<h4>Games</h4>
+									<div class="row">
+										<div class="col-md-6">
+											<ol class="list-unstyled">
+												{% for sub in subcats|slice:"23:35" %}
+												<li><a href="{% url 'subcatdetail' sub.id %}">{{sub.subcategory_name}}</a></li>
+												{% endfor %}
+											</ol>
+										</div>
+										<div class="col-md-6">
+											<ol class="list-unstyled">
+												{% for sub in subcats|slice:"35:" %}
+												<li><a href="{% url 'subcatdetail' sub.id %}">{{sub.subcategory_name}}</a></li>
+												{% endfor %}
+											</ol>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-md-4">
+								<div class="movie-footer our-products">
+									<h4></h4>
+									<div class="our-product">
+										<a href="{% url 'home' %}"><img src="{% static "images/bitappz.png" %}" class="img-responsive" alt="company-logo"></a>
+										
+									</div>
+									<div class="our-product">
+										<p>CopyRight &copy; 2016 <a href="#">BitAppz</a>, All rights reserved &reg; .</p>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

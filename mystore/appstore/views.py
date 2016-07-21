@@ -20,6 +20,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def search(request):
 	"""Search."""
+	subcat = SubCategory.objects.all()
 	try:
 		q = request.GET.get('q')
 	except:
@@ -27,11 +28,11 @@ def search(request):
 
 	if q:
 		applications = Application.objects.filter(app_name__icontains=q)
-		context = {"query": q, "applications": applications, "user" : request.user,}
+		context = {"query": q, "applications": applications, "user" : request.user, "subcats":subcat,}
 		template = 'results.html'
 	else:
 		template = 'home.html'
-		context = {"user" : request.user,}
+		context = {"user" : request.user, "subcats":subcat,}
 	return render(request, template, context)
 
 
@@ -61,7 +62,7 @@ def SubCategoryPage(request, s_id):
 	applications_list = Application.objects.filter(app_subcategory=sub_category).order_by('-app_ratingcount')
 	paginator = Paginator(applications_list, 32)
 	page = request.GET.get('page')
-
+	subcat = SubCategory.objects.all()
 	try:
 		applications = paginator.page(page)
 	except PageNotAnInteger:
@@ -72,7 +73,7 @@ def SubCategoryPage(request, s_id):
 
 	total_pages = applications.paginator.num_pages+1
 	template = "SubCategory.html"
-	context = {"applications":applications, "subcategory":sub_category, 'range': range(1,total_pages)}
+	context = {"applications":applications, "subcategory":sub_category, "subcats":subcat, 'range': range(1,total_pages)}
 	return render(request, template, context)
 
 """================================="""
@@ -82,12 +83,12 @@ def SubCategoryPage(request, s_id):
 def AppDetailPage(request, a_id):
 	"""Application Detail Page Method"""
 	app_obj = Application.objects.get(pk=a_id)
-	similar_apps = Application.objects.filter(app_subcategory=app_obj.app_subcategory).order_by('?')
+	similar_apps = Application.objects.filter(app_subcategory=app_obj.app_subcategory).order_by('-app_ratingcount')
 	publisher_apps = Application.objects.filter(app_publisher=app_obj.app_publisher).order_by('?')
 	app_image = ApplicationImage.objects.filter(app_name=app_obj)
-
+	subcat = SubCategory.objects.all()
 	template = "description.html"
-	context = {"app_detail":app_obj, "similar_apps":similar_apps, "publisher_apps":publisher_apps, "app_image":app_image}
+	context = {"app_detail":app_obj, "similar_apps":similar_apps,"subcats":subcat, "publisher_apps":publisher_apps, "app_image":app_image}
 	return render(request, template, context)
 
 """================================="""
@@ -98,9 +99,9 @@ def PublisherPage(request, p_id):
 	"""Publisher Page Method"""
 	publisher = Publisher.objects.get(pk=p_id)
 	publisher_apps = Application.objects.filter(app_publisher=publisher)
-
+	subcat = SubCategory.objects.all()
 	template = "publisher.html"
-	context = {"publisher":publisher, "publisher_apps":publisher_apps,}
+	context = {"publisher":publisher,"subcats":subcat, "publisher_apps":publisher_apps,}
 	return render(request, template, context)
 
 """=============================="""
@@ -109,44 +110,48 @@ def PublisherPage(request, p_id):
 
 def AppPagePopular(request):
 	"""Popular Page Apps Method"""
+	subcat = SubCategory.objects.all()
 	category = Category.objects.first()
 	sub_category = SubCategory.objects.filter(category=category)
 	applications = Application.objects.filter(app_subcategory=sub_category).order_by('-app_ratingcount')
 	featured = Featured.objects.filter(featured_type='2')
 	template = "AppPopular.html"
-	context = {"applications":applications, "subcategory":sub_category, "category":category, "featured":featured,}
+	context = {"applications":applications,"subcats":subcat, "subcategory":sub_category, "category":category, "featured":featured,}
 	return render(request, template, context)
 
 def AppPageChart(request):
 	"""Chart Page Apps Method"""
+	subcat = SubCategory.objects.all()
 	category = Category.objects.first()
 	topfree = TopFree.objects.filter(category=category).order_by('app_rank')
 	topnewfree = TopNewFree.objects.filter(category=category).order_by('app_rank')
 	trending = Trending.objects.filter(category=category).order_by('app_rank')
 
 	template = "AppChart.html"
-	context = {"topfree":topfree, "topnewfree":topnewfree, "trending":trending,}
+	context = {"topfree":topfree,"subcats":subcat, "topnewfree":topnewfree, "trending":trending,}
 	return render(request, template, context)
 
 def GamePagePopular(request):
 	"""Popular Page Games Method"""
+	subcat = SubCategory.objects.all()
 	category = Category.objects.last()
 	sub_category = SubCategory.objects.filter(category=category)
 	applications = Application.objects.filter(app_subcategory=sub_category).order_by('-app_ratingcount')
 	featured = Featured.objects.filter(featured_type='3')
 	template = "GamePopular.html"
-	context = {"applications":applications, "subcategory":sub_category, "category":category, "featured":featured,}
+	context = {"applications":applications,"subcats":subcat, "subcategory":sub_category, "category":category, "featured":featured,}
 	return render(request, template, context)
 
 def GamePageChart(request):
 	"""Chart Page Games Method"""
+	subcat = SubCategory.objects.all()
 	category = Category.objects.last()
 	topfree = TopFree.objects.filter(category=category).order_by('app_rank')
 	topnewfree = TopNewFree.objects.filter(category=category).order_by('app_rank')
 	trending = Trending.objects.filter(category=category).order_by('app_rank')
 
 	template = "GameChart.html"
-	context = {"topfree":topfree, "topnewfree":topnewfree, "trending":trending,}
+	context = {"topfree":topfree,"subcats":subcat, "topnewfree":topnewfree, "trending":trending,}
 	return render(request, template, context)
 
 """=============================================="""
@@ -154,27 +159,30 @@ def GamePageChart(request):
 """=============================================="""
 
 def APPTopFreeChartPage(request):
+	subcat = SubCategory.objects.all()
 	all_category = Category.objects.first()
 	topfree = TopFree.objects.filter(category=all_category).order_by('app_rank')
 
 	template = "apptopfreechart.html"
-	context = {"topfree":topfree, "category":all_category,}
+	context = {"topfree":topfree,"subcats":subcat, "category":all_category,}
 	return render(request, template, context)
 
 def APPTopNewFreeChartPage(request):
+	subcat = SubCategory.objects.all()
 	all_category = Category.objects.first()
 	topnewfree = TopNewFree.objects.filter(category=all_category).order_by('app_rank')
 
 	template = "apptopnewfreechart.html"
-	context = {"topnewfree":topnewfree, "category":all_category,}
+	context = {"topnewfree":topnewfree,"subcats":subcat, "category":all_category,}
 	return render(request, template, context)
 
 def APPTrendingChartPage(request):
+	subcat = SubCategory.objects.all()
 	all_category = Category.objects.first()
 	trending = Trending.objects.filter(category=all_category).order_by('app_rank')
 
 	template = "apptrendingchart.html"
-	context = {"trending":trending, "category":all_category,}
+	context = {"trending":trending,"subcats":subcat, "category":all_category,}
 	return render(request, template, context)
 
 """======================================="""
@@ -182,27 +190,30 @@ def APPTrendingChartPage(request):
 """======================================="""
 
 def GAMETopFreeChartPage(request):
+	subcat = SubCategory.objects.all()
 	all_category = Category.objects.last()
 	topfree = TopFree.objects.filter(category=all_category).order_by('app_rank')
 
 	template = "gametopfreechart.html"
-	context = {"topfree":topfree, "category":all_category,}
+	context = {"topfree":topfree,"subcats":subcat, "category":all_category,}
 	return render(request, template, context)
 
 def GAMETopNewFreeChartPage(request):
+	subcat = SubCategory.objects.all()
 	all_category = Category.objects.last()
 	topnewfree = TopNewFree.objects.filter(category=all_category).order_by('app_rank')
 
 	template = "gametopnewfreechart.html"
-	context = {"topnewfree":topnewfree, "category":all_category,}
+	context = {"topnewfree":topnewfree,"subcats":subcat, "category":all_category,}
 	return render(request, template, context)
 
 def GAMETrendingChartPage(request):
+	subcat = SubCategory.objects.all()
 	all_category = Category.objects.last()
 	trending = Trending.objects.filter(category=all_category).order_by('app_rank')
 
 	template = "gametrendingchart.html"
-	context = {"trending":trending, "category":all_category,}
+	context = {"trending":trending,"subcats":subcat, "category":all_category,}
 	return render(request, template, context)
 
 

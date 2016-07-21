@@ -1,5 +1,14 @@
 # -*- coding: utf-8 -*-
+from scrapy.exporters import JsonLinesItemExporter
 
+class MyJsonLinesItemExporter(JsonLinesItemExporter):
+    def __init__(self, file, **kwargs):
+        super(MyJsonLinesItemExporter, self).__init__(file, ensure_ascii=False, **kwargs)
+
+FEED_EXPORTERS = {
+    'jsonlines': 'appscraper.settings.MyJsonLinesItemExporter',
+    'jl': 'appscraper.settings.MyJsonLinesItemExporter',
+}
 # Scrapy settings for appscraper project
 #
 # For simplicity, this file contains only settings considered important or

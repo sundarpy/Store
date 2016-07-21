@@ -69,8 +69,8 @@ class Application(models.Model):
 	"""Applications and Games"""
 	app_name = models.CharField(max_length=100, null=True, blank=True)
 	app_icon_url = models.CharField(max_length=255, null=True, blank=True)
-	app_slug = AutoSlugField(populate_from='app_name', null=True)
 	app_description = models.TextField(null=True, blank=True)
+	app_minimum = models.CharField(max_length=100, null=True, blank=True)
 	app_publisher = models.ForeignKey(Publisher, blank=True, null=True)
 	app_category = models.ForeignKey(Category, blank=True, null=True)
 	app_subcategory = models.ForeignKey(SubCategory, blank=True, null=True)

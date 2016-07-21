@@ -15,6 +15,7 @@ class AppItem(scrapy.Item):
 	description = scrapy.Field()
 	publisher = scrapy.Field()
 	category = scrapy.Field()
+	minimum = scrapy.Field()
 	subcategory = scrapy.Field()
 	rating = scrapy.Field()
 	ratingcount = scrapy.Field()
