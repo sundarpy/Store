@@ -120,6 +120,9 @@ textarea:focus, input:focus {
     margin-left: 151px;
 }
 
+.app-games .app-gams{
+
+}
 /*========
 Signup csss start
 ===========*/
@@ -1408,6 +1411,32 @@ color: #6e6e6e;
 
 /* Custom, iPhone Retina */
 @media (min-width : 320px) and (max-width : 479px){
+    .navbar-brand>img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        width: 48px;
+        text-align: center;
+        margin-top: -20px;
+    }
+    .app-games .app-game-left {
+        text-align: center;
+        height: 50px;
+        padding: 7px 0px;
+        display: inline;
+        float: left;
+        margin-right: 20px;
+        padding-left: 78px;
+    }
+    .app-classified .app-gams{
+        display: inline;
+        float: left;
+        padding-left: 70px;
+        margin-bottom: 8px;
+    }
+    .app-classified .gams-right{
+        margin-left: -80px;
+    }
     .navbar-form span {
         margin-right: -12px !important;
         margin-top: -38px !important;
@@ -1439,7 +1468,7 @@ color: #6e6e6e;
     float: left;
 }
     .navbar-form .form-control {
-        width: 234px !important;
+        width: 242px !important;
         max-width: 100%;
         padding: 10px 10px !important;
         border-radius: 16px !important;
@@ -1473,7 +1502,7 @@ color: #6e6e6e;
         margin-left: 0px !important;
     }
     .Recommented-part .thump-grid {
-        padding-left: 42px;
+        padding-left: 38px;
     }
     .Recommented-part .recomment-title h2 {
         font-size: 18px;
@@ -1525,11 +1554,44 @@ color: #6e6e6e;
     .app-classifies .navbar-centers .nabbar-rights {
         margin: 0px 24px;
     }
+    .movie-footer {
+        color: #BB232F;
+        text-align: left;
+        display: inline;
+        float: left;
+        padding-left: 38px;
+    }
     
 }
  
 /* Extra Small Devices, Phones */
 @media (min-width : 480px) and (max-width : 767px){
+    .navbar-brand>img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        width: 48px;
+        text-align: center;
+        margin-top: -20px;
+    }
+    .app-games .app-game-left {
+        text-align: center;
+        height: 50px;
+        padding: 7px 0px;
+        display: inline;
+        float: left;
+        margin-right: 20px;
+        padding-left: 78px;
+    }
+     .app-classified .app-gams{
+        display: inline;
+        float: left;
+        padding-left: 70px;
+        margin-bottom: 8px;
+    }
+    .app-classified .gams-right{
+        margin-left: -80px;
+    }
     .navbar-form .form-control {
         width: 100%;
         max-width: 900px;
@@ -1621,6 +1683,14 @@ color: #6e6e6e;
         max-width: 100%;
         margin-left: 40px;
     }
+    .movie-footer {
+        color: #BB232F;
+        text-align: left;
+        display: inline;
+        float: left;
+        padding-left: 38px;
+    }
+}
 
 
 /* Small Devices, Tablets */
