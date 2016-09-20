@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Application, Publisher, Category, SubCategory, ApplicationImage, Featured, TopFree, TopNewFree, Trending
+from .models import Application, Publisher, Category, SubCategory, ApplicationImage, Featured, TopFree, TopNewFree, Trending, Collection, SerfoApp
 # Register your models here.
 class ApplicationAdmin(admin.ModelAdmin):
 	list_display = ('app_name', 'app_publisher', 'app_category', 'app_subcategory', 'app_size', 'app_version', 'app_ratingcount')
@@ -35,6 +35,8 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(SubCategory, SubCategoryAdmin)
 admin.site.register(ApplicationImage, ApplicationImageAdmin)
 admin.site.register(Featured)
+admin.site.register(Collection)
+admin.site.register(SerfoApp)
 admin.site.register(TopFree, TopFreeAdmin)
 admin.site.register(TopNewFree, TopNewFreeAdmin)
 admin.site.register(Trending, TrendingAdmin)

@@ -141,4 +141,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'support@bitnomix.com'
-EMAIL_HOST_PASSWORD = 'bitsupp123'
+EMAIL_HOST_PASSWORD = 'support123'

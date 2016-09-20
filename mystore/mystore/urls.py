@@ -29,5 +29,8 @@ urlpatterns = [
     url(r'^game/topnewfree', views.GAMETopNewFreeChartPage, name='gametopnewfree'),
     url(r'^game/trending', views.GAMETrendingChartPage, name='gametrending'),
 
+    url(r'^gettrendingApps/', views.gettrendingApps, name='gettrendingApps'),
+    url(r'^getpopularApps/', views.getpopularApps, name='getpopularApps'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()

@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from appstore.models import Publisher, Category, SubCategory, Application, ApplicationImage, Featured, TopFree, TopNewFree, Trending
+from appstore.models import Publisher, Category, SubCategory, Application, ApplicationImage, Featured, TopFree, TopNewFree, Trending, Collection, SerfoApp
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, login, authenticate, get_user_model
 from django.views.decorators.csrf import csrf_protect
-
+import json
 from django.shortcuts import render, HttpResponse, Http404, render_to_response, get_object_or_404
 from django.template.loader import get_template
 from django.template import Context, RequestContext, loader
@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.forms.models import model_to_dict
 
 # Create your views here.
 """==============================="""
@@ -243,6 +244,44 @@ def GAMETrendingChartPage(request):
 # 	application_to_delete = get_object_or_404(Favorite, pk=app_id).delete()
 # 	messages.info(request, 'Application removed from Wish List.',fail_silently=True)
 # 	return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def gettrendingApps(request):
+	item=[]
+	app1=SerfoApp.objects.filter(rowno='1')
+	for j in app1:
+		response1 = {}
+		response1['apptype'] = j.rowno
+		response1['name'] = j.applications.app_name
+		response1['iconurl'] = j.applications.app_icon_url
+		response1['appid'] = j.applications.id
+		response1['publisher'] = j.applications.app_publisher.name
+		response1['rating'] = j.applications.app_rating
+		item.append(response1)
+	
+	data=json.dumps(item)
+	return HttpResponse(data, content_type='application/json')
+
+def getpopularApps(request):
+	item=[]
+	app2=SerfoApp.objects.filter(rowno='2')
+	for k in app2:
+		response2 = {}
+		response2['apptype'] = k.rowno
+		response2['name'] = k.applications.app_name
+		response2['iconurl'] = k.applications.app_icon_url
+		response2['appid'] = k.applications.id
+		response2['publisher'] = k.applications.app_publisher.name
+		response1['rating'] = k.applications.app_rating
+		item.append(response2)
+	
+	data=json.dumps(item)
+	return HttpResponse(data, content_type='application/json')
+
+
+
+
+
+
 
 
 

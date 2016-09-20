@@ -140,3 +140,30 @@ class Trending(models.Model):
 # 	user = models.ForeignKey(User)
 # 	favorite_apps = models.ForeignKey(Application, null=True, blank=True)
 
+class Collection(models.Model):
+	"""App Collection Class"""
+	title = models.CharField(max_length=255, null=True, blank=True)
+	subtitle = models.CharField(max_length=255, null=True, blank=True)
+	applications = models.ForeignKey(Application, null=True, blank=True)
+	ROW_TYPE = (
+			('1', 'row_one'),
+			('2', 'row_two'),
+			('3', 'row_three'),
+		)
+	rowno = models.CharField(max_length=2, choices=ROW_TYPE, null=True)
+
+	def __str__(self):
+		return self.title
+
+class SerfoApp(models.Model):
+	"""Apps to be sent to Serfo"""
+	applications = models.ForeignKey(Application, null=True, blank=True)
+	ROW_TYPE = (
+			('1', 'Trending'),
+			('2', 'Popular'),
+		)
+	rowno = models.CharField(max_length=2, choices=ROW_TYPE, null=True)
+
+
+
+
