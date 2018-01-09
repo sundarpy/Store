@@ -22,15 +22,17 @@
 		</head>
 		
 		<body>
-			<!-- Google Tag Manager -->
- +<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TMWGDS"
- +height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
- +<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
- +new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
- +j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
- +'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
- +})(window,document,'script','dataLayer','GTM-TMWGDS');</script>
- +<!-- End Google Tag Manager -->
+
+		<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TMWGDS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TMWGDS');</script>
+<!-- End Google Tag Manager -->
+
 			<div class="wrapper" id="wrapper">
 				<!-- HEADER START-->
 				<header id="#">
@@ -125,35 +127,450 @@
 							</div>
 						</div>
 					</div>
-					
-					{% for sub in subcategory %}
 					<div class="Recommented-part">
-						<div class="container">
-							<div class="recomment-title">
-								<h2>
-									{{sub.subcategory_name}}
-									<span class="more pull-right">
-										<a href="{% url 'subcatdetail' sub.id %}" class="btn btn-sm">More</a>
-									</span>
-								</h2>
-							</div>
-							<div class="thump-grid">
-								<div class="row">
-									{% for app in sub.get_apps|slice:":8" %}
-										<div class="thumbnail">
-											<a href="{% url 'appdetail' app.id %}"><img src="{{app.app_icon_url}}" alt=""></a>
-											<div class="caption">
-												<a href="{% url 'appdetail' app.id %}"><h4>{{app.app_name}}</h4></a>
-												<h5>{{app.app_publisher}}</h5><span class="rating-app pull-right">{{app.app_rating}}</span>
-												<p class="downld"><a href="{{app.app_url}}" class="btn btn-sm">Download APK</a></p>
-											</div>
-										</div>
-									{% endfor %}
-								</div>
-							</div>
+	<div class="container">
+		<div class="recomment-title">
+			<h2>For the health conscious</h2>
+			<h4>Your mobile aids for a healthier lifestyle</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz1 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
 						</div>
 					</div>
-					{% endfor %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>Feed the audiophile in you</h2>
+			<h4>The best music and audio apps you’re gonna love having on your phone</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz2 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>Edutainment</h2>
+			<h4>Learning has never been this fun before!</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz3 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>Excite The Explorer in You</h2>
+			<h4>Apps to Help You Explore</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz4 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>Test your mental might</h2>
+			<h4>Ignite Your Minds</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz5 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>A seamsless viewing experience starts here</h2>
+			<h4>Must have apps for smooth media and video viewing</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz6 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>Plot, Execute, Win - Best Strategy Games</h2>
+			<h4>Bring Out The Mastermind in You</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz7 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>Quench your shopping thirst</h2>
+			<h4>Shopaholics only</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz8 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>Want to Race?</h2>
+			<h4>Hit the Throttle, Steer Through, Win Smooth</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz9 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>Helping you get to your destination</h2>
+			<h4>Cabs, Directions, Real-Time traffic reports, and more!</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz10 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>Tingle your Grey Matter</h2>
+			<h4>Try These Trivia Games if You're Feeling Up For A Challenge</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz11 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>Never Miss your Sports Updates Again</h2>
+			<h4>Catch the Action Live on these Apps</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz12 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>Are You a Wordsmith?</h2>
+			<h4>Test your vocabulary with these awesome word games</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz13 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>Stay Updated</h2>
+			<h4>Keep in Touch with Current Affairs</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz14 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>We Become the Books We Read</h2>
+			<h4>Read Better With These Apps</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz15 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>Games For The Thrill Seekers</h2>
+			<h4>Action Games that will indulge you!</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz16 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>Click Click Click!</h2>
+			<h4>Photgraphy Enthusiasts, you better have these!</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz17 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>A Mobile Artiste In The Making</h2>
+			<h4>Play Instruments On Your Phone!</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz18 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>Never Get Bored Again!</h2>
+			<h4>These Board Games Are Cure For Boredom</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz19 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Recommented-part">
+	<div class="container">
+		<div class="recomment-title">
+			<h2>For Those Who Live to Eat</h2>
+			<h4>You can't call yourself a foodie without these apps on your phone!</h4>
+		</div>
+		<div class="thump-grid">
+			<div class="row">
+				{% for row in rowappz20 %}
+					<div class="thumbnail">
+						<a href="{% url 'appdetail' row.applications.id %}"><img src="{{row.applications.app_icon_url}}" alt=""></a>
+						<div class="caption">
+							<a href="{% url 'appdetail' row.applications.id %}"><h4>{{row.applications.app_name}}</h4></a>
+							<h5>{{row.applications.app_publisher}}</h5><span class="rating-app pull-right">{{row.applications.app_rating}}</span>
+							<p class="downld"><a href="{{row.applications.app_url}}" class="btn btn-sm">Download APK</a></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
 				</section>
 				<!-- CONTENT END-->
 				

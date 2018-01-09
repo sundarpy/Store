@@ -31,6 +31,7 @@ urlpatterns = [
 
     url(r'^gettrendingApps/', views.gettrendingApps, name='gettrendingApps'),
     url(r'^getpopularApps/', views.getpopularApps, name='getpopularApps'),
+    url(r'^getApps/', views.getApps, name='getApps'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()

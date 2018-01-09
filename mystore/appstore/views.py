@@ -13,6 +13,9 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.forms.models import model_to_dict
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 # Create your views here.
 """==============================="""
@@ -49,8 +52,30 @@ def HomePage(request):
 	applications = Application.objects.filter(app_subcategory=sub_category)
 	featured = Featured.objects.filter(featured_type='1')
 
+	rowappz1 = Collection.objects.filter(rowno='1')
+	rowappz2 = Collection.objects.filter(rowno='2')
+	rowappz3 = Collection.objects.filter(rowno='3')
+	rowappz4 = Collection.objects.filter(rowno='4')
+	rowappz5 = Collection.objects.filter(rowno='5')
+	rowappz6 = Collection.objects.filter(rowno='6')
+	rowappz7 = Collection.objects.filter(rowno='7')
+	rowappz8 = Collection.objects.filter(rowno='8')
+	rowappz9 = Collection.objects.filter(rowno='9')
+	rowappz10 = Collection.objects.filter(rowno='10')
+
+	rowappz11 = Collection.objects.filter(rowno='11')
+	rowappz12 = Collection.objects.filter(rowno='12')
+	rowappz13 = Collection.objects.filter(rowno='13')
+	rowappz14 = Collection.objects.filter(rowno='14')
+	rowappz15 = Collection.objects.filter(rowno='15')
+	rowappz16 = Collection.objects.filter(rowno='16')
+	rowappz17 = Collection.objects.filter(rowno='17')
+	rowappz18 = Collection.objects.filter(rowno='18')
+	rowappz19 = Collection.objects.filter(rowno='19')
+	rowappz20 = Collection.objects.filter(rowno='20')
+
 	template = "home.html"
-	context = {"applications":applications, "subcategory":sub_category, "subcats":subcats, "featured":featured,}
+	context = {"applications":applications, "subcategory":sub_category, "subcats":subcats, "featured":featured, "rowappz1":rowappz1, "rowappz2":rowappz2, "rowappz3":rowappz3, "rowappz4":rowappz4, "rowappz5":rowappz5, "rowappz6":rowappz6, "rowappz7":rowappz7, "rowappz8":rowappz8, "rowappz9":rowappz9, "rowappz10":rowappz10, "rowappz11":rowappz11, "rowappz12":rowappz12, "rowappz13":rowappz13, "rowappz14":rowappz14, "rowappz15":rowappz15, "rowappz16":rowappz16, "rowappz17":rowappz17, "rowappz18":rowappz18, "rowappz19":rowappz19, "rowappz20":rowappz20}
 	return render(request, template, context)
 
 """====================================="""
@@ -245,6 +270,7 @@ def GAMETrendingChartPage(request):
 # 	messages.info(request, 'Application removed from Wish List.',fail_silently=True)
 # 	return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+@api_view(['GET','POST'])
 def gettrendingApps(request):
 	item=[]
 	app1=SerfoApp.objects.filter(rowno='1')
@@ -258,9 +284,10 @@ def gettrendingApps(request):
 		response1['rating'] = j.applications.app_rating
 		item.append(response1)
 	
-	data=json.dumps(item)
-	return HttpResponse(data, content_type='application/json')
+	data=item
+	return Response({"data":data, 'status':200})
 
+@api_view(['GET','POST'])
 def getpopularApps(request):
 	item=[]
 	app2=SerfoApp.objects.filter(rowno='2')
@@ -271,12 +298,39 @@ def getpopularApps(request):
 		response2['iconurl'] = k.applications.app_icon_url
 		response2['appid'] = k.applications.id
 		response2['publisher'] = k.applications.app_publisher.name
-		response1['rating'] = k.applications.app_rating
+		response2['rating'] = k.applications.app_rating
 		item.append(response2)
 	
-	data=json.dumps(item)
-	return HttpResponse(data, content_type='application/json')
+	data=item
+	return Response({"data":data, 'status':200})
 
+@api_view(['GET','POST'])
+def getApps(request):
+	item=[]
+	app1=SerfoApp.objects.filter(rowno='1')
+	app2=SerfoApp.objects.filter(rowno='2')
+	for j in app1:
+		response1 = {}
+		response1['apptype'] = j.rowno
+		response1['name'] = j.applications.app_name
+		response1['iconurl'] = j.applications.app_icon_url
+		response1['appid'] = j.applications.id
+		response1['publisher'] = j.applications.app_publisher.name
+		response1['rating'] = j.applications.app_rating
+		item.append(response1)
+
+	for k in app2:
+		response2 = {}
+		response2['apptype'] = k.rowno
+		response2['name'] = k.applications.app_name
+		response2['iconurl'] = k.applications.app_icon_url
+		response2['appid'] = k.applications.id
+		response2['publisher'] = k.applications.app_publisher.name
+		response2['rating'] = k.applications.app_rating
+		item.append(response2)
+	
+	data=item
+	return Response({"data":data, 'status':200})
 
 
 
